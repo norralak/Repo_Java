@@ -24,7 +24,7 @@ public class HomeworkOne {
         System.out.println("There are "+hours+" in a day!"); ////Will print There are 24 hours in a day!
         //Maximum number of days in a year
         int days = 366;
-        System.out.println("The maximum amount of days in a year can be "+days"!"); //Will print The maximum amount of days in a year can be 366 days!
+        System.out.println("The maximum amount of days in a year can be "+days+"!"); //Will print The maximum amount of days in a year can be 366 days!
         //Total employees in an organization
         int employees = 20;
         System.out.println("This company has "+employees+" employees."); //Will print This company has 20 employees.
@@ -44,6 +44,6 @@ public class HomeworkOne {
         char firstIn = 'N';
         char lastIn = 'S';
         System.out.println("My initials are "+firstIn+"."+lastIn+"."); //Will print My initials are N.S.
-        }
     }
 }
+
