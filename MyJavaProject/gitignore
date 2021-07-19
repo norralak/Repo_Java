@@ -1,4 +1,5 @@
-[200~.classpath
+  
+.classpath
 .project
 .settings/
 target/
@@ -13,6 +14,6 @@ doc/
 *.log
 *.txt
 *-all.xml
-*.mf
 nbproject
-*.xml
+/MyJavaProject/nbproject/private/
+/MyJavaProject/build/
