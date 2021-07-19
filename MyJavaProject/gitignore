@@ -1,4 +1,3 @@
-  
 .classpath
 .project
 .settings/
@@ -14,6 +13,5 @@ doc/
 *.log
 *.txt
 *-all.xml
+*.mf
 nbproject
-/MyJavaProject/nbproject/private/
-/MyJavaProject/build/
