@@ -7,7 +7,7 @@ package HomeworkFour;
 
 /**
  *
- * @author cheew
+ * @author Norralak
  */
 public class HomeworkFour {
     public static void main(String [] args){
