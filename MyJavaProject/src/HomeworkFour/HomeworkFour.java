@@ -13,7 +13,7 @@ public class HomeworkFour {
     public static void main(String [] args){
         //Creating a variable to store studentScore and maxScore.
         int studentScores [] = {80, 112, 97, 62, 143, 133, 18};
-        int maxScore = 150;
+        double maxScore = 150.00;
         //I made an array where each index holds the value of a student's score.
         //Based on %, display the student's grade.
         /**
@@ -26,7 +26,7 @@ public class HomeworkFour {
          */
         //Change which value to test by changing the value of int variable stdnt
         int stdnt = 4;  // You can test each of the array value by changing this from 0-6
-        double pct = 100*(studentScores[stdnt]/150.0); //Student's score out of 150 times 100 for %
+        double pct = 100*(studentScores[stdnt]/maxScore); //Student's score out of 150 times 100 for %
         String grade = ""; //String variable that will either be A B C D E F depending on pct
         if (pct >= 91.0){
             grade  = "A";
