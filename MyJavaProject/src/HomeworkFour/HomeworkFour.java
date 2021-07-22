@@ -26,7 +26,7 @@ public class HomeworkFour {
          */
         //Change which value to test by changing the value of int variable stdnt
         int stdnt = 4;  // You can test each of the array value by changing this from 0-6
-        double pct = 100*(studentScores[stdnt]/150.0); //Student's score out of 150 times 100 for %
+        double pct = 100.0 * studentScores[stdnt]/maxScore; //Student's score out of 150 times 100 for %
         String grade = ""; //String variable that will either be A B C D E F depending on pct
         if (pct >= 91.0){
             grade  = "A";
@@ -43,11 +43,14 @@ public class HomeworkFour {
         else if (pct >= 51.0){
             grade  = "E";
         }
-        else {
+        else if (pct < 50.9999 && pct >= 0.0){
             grade  = "F";
         }
+        else {
+            grade ="INVALID GRADE";
+        }
         System.out.println("Hello Student #"+stdnt+". Your score is of "+studentScores[stdnt]+" out of "+maxScore);
-        System.out.println("Your percentage: "+pct);
+        System.out.println("Your percentage: "+pct+"%");
         System.out.println("Your grade: "+grade);
         /**
          * If number is divisible by 3 print divisible by three.
