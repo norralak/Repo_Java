@@ -12,6 +12,7 @@ package HomeworkFour;
 public class HomeworkFour {
     public static void main(String [] args){
         //Creating a variable to store studentScore and maxScore.
+        //07/22/2021 Re Committing I deleted by accident
         int studentScores [] = {80, 112, 97, 62, 143, 133, 18};
         int maxScore = 150;
         //I made an array where each index holds the value of a student's score.
