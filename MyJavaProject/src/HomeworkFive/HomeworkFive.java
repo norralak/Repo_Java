@@ -5,6 +5,8 @@
  */
 package HomeworkFive;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Norralak
@@ -54,7 +56,7 @@ public class HomeworkFive {
             double pct = 100.0 * studentScores[stdnt]/maxScore; //Student's score out of 150 times 100 for %
             String grade = ""; //String variable that will either be A B C D E F depending on pct
             //HW 5 SCHOLARSHIP; Could represent as boolean and then print based on that but it's easier to do a string.
-            String scholarship = "QUALIFIED SCHOLARSHIP: ";
+            String scholarship = "QUALIFIED SCHOLARSHIP FOR NEXT YEAR: ";
             if (pct >= 91.0){
                 grade  = "A";
                 scholarship += "FULL RIDE";
@@ -90,6 +92,42 @@ public class HomeworkFive {
         }
         
         //Prompt 4
-        //Let's use the string 
+        int[] arrNum = {26, -7, -6, 23, 29};
+        int avg = 0;
+        for (int i = 0; i < arrNum.length; i++){
+            avg += arrNum[i];
+        }
+        avg /= (arrNum.length);
+        System.out.println("THE AVERAGE OF "+Arrays.toString(arrNum)+" IS "+avg);
+        //Prompt 5
+        String[] arrWords = {"john", "happy", "peACe", "jOy", "lui", "harry"};
+        boolean found = false; //For purposes of repeating values in the array
+        String match = "Norralak"; //I'm going to ignore case because not specified; Change this variable to test
+        for (int i = 0; i < arrWords.length; i++){
+            if(arrWords[i].equalsIgnoreCase(match)){ //If found
+                System.out.println(match.toUpperCase()+" WAS FOUND IN POSITION "+(i+1)); //I made console print match uppercase because it looks nicer
+                found = true; //In case there are multiple but if we only account for 1 in a list then this line would say break
+            }
+            else if (i == arrWords.length - 1 && !found){ //If it was never matched in the whole loop
+                System.out.println(match.toUpperCase()+" WAS NOT FOUND IN THE LIST"); //Uppercase looks better
+            }
+        }
+        //Prompt 6
+        int[] arrNumbers = {11, 22, 33, 44, 55, 13, 65};
+        String[] arrNames = {"john", "happy", "peACe", "jOy", "LEarN", "joy", "laugh"};
+        int search = 13; //The prompt is 33 but 13 is my fav number. Change this variable to test certain things.
+        //First let's make sure array length is the same for both.
+        if (arrNumbers.length == arrNames.length){
+            //Only search if they're the same length
+            for (int i = 0; i < arrNumbers.length; i++){
+                if (arrNumbers[i] == search){ //If we find our number
+                    System.out.println(search+" WAS FOUND AT POSITION "+(i+1));
+                    System.out.println("THE WORD ASSOCIATED WITH THIS POSITION IS: "+arrNames[i]);//I would love to capitalize here so it looks good but let's not :)
+                }
+            }
+        }
+        else { //If array does not have the same length
+            System.out.println("ERROR: ARRAYS DO NOT HAVE THE SAME LENGTH");
+        }
     }
 }
