@@ -93,7 +93,7 @@ public class HomeworkFive {
         
         //Prompt 4
         int[] arrNum = {26, -7, -6, 23, 29};
-        int avg = 0;
+        double avg = 0;
         for (int i = 0; i < arrNum.length; i++){
             avg += arrNum[i];
         }
@@ -114,6 +114,7 @@ public class HomeworkFive {
         }
         //Prompt 6
         int[] arrNumbers = {11, 22, 33, 44, 55, 13, 65};
+        found = false;
         String[] arrNames = {"john", "happy", "peACe", "jOy", "LEarN", "joy", "laugh"};
         int search = 13; //The prompt is 33 but 13 is my fav number. Change this variable to test certain things.
         //First let's make sure array length is the same for both.
@@ -124,10 +125,22 @@ public class HomeworkFive {
                     System.out.println(search+" WAS FOUND AT POSITION "+(i+1));
                     System.out.println("THE WORD ASSOCIATED WITH THIS POSITION IS: "+arrNames[i]);//I would love to capitalize here so it looks good but let's not :)
                 }
+                //If it was not found
+                else if (!found && i == arrNumbers.length - 1){
+                    System.out.println(search+" WAS NOT FOUND.");
+                }
             }
         }
         else { //If array does not have the same length
             System.out.println("ERROR: ARRAYS DO NOT HAVE THE SAME LENGTH");
         }
+        //Prompt 7
+        String[] nameList = {"john", "happy", "peACe", "jOy", "LEarN", "Orange", "king kong", "iRON MAN"};
+        for (int i = 0; i < nameList.length; i++){
+            if (nameList[i].length() >=5 && nameList[i].toUpperCase().contains("O")){
+                System.out.println(nameList[i]+" contains an o/O");
+            }
+        }
     }
+        
 }
