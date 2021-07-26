@@ -108,10 +108,11 @@ public class HomeworkFive {
                 System.out.println(match.toUpperCase()+" WAS FOUND IN POSITION "+(i+1)); //I made console print match uppercase because it looks nicer
                 found = true; //In case there are multiple but if we only account for 1 in a list then this line would say break
             }
-            else if (i == arrWords.length - 1 && !found){ //If it was never matched in the whole loop
-                System.out.println(match.toUpperCase()+" WAS NOT FOUND IN THE LIST"); //Uppercase looks better
-            }
         }
+        //If it was not found
+        if (!found){
+            System.out.println(match+" WAS NOT FOUND.");
+        }        
         //Prompt 6
         int[] arrNumbers = {11, 22, 33, 44, 55, 13, 65};
         found = false;
@@ -125,10 +126,10 @@ public class HomeworkFive {
                     System.out.println(search+" WAS FOUND AT POSITION "+(i+1));
                     System.out.println("THE WORD ASSOCIATED WITH THIS POSITION IS: "+arrNames[i]);//I would love to capitalize here so it looks good but let's not :)
                 }
-                //If it was not found
-                else if (!found && i == arrNumbers.length - 1){
-                    System.out.println(search+" WAS NOT FOUND.");
-                }
+            }
+            //If it was not found
+            if (!found){
+                System.out.println(search+" WAS NOT FOUND.");
             }
         }
         else { //If array does not have the same length
