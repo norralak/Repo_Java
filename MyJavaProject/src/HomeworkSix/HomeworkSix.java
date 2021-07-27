@@ -72,6 +72,14 @@ public class HomeworkSix {
         System.out.println(Arrays.toString(reverseWords));
         
         //Task 4: Vowels
+        /**
+         * DISCLAIMER: 
+         * I am a coder, not a linguistics scholar.
+         * I have no idea the set rules of when Y is or is not a vowel.
+         * This begs the question: What are the set rules of when Y is a vowel and when it is a consonant?
+         * Tell me that and I will gladly write the code.
+         */
+        
         String[] vowTest = {"TORSAK", "ANGTHONG", "NORRALAK", "ANGIE", "UMBRA DEOS"};
         for (String word : vowTest){ //Using the same string array
             int vowCount = 0; //Count the vowels
