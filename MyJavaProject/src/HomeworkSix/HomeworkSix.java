@@ -15,23 +15,26 @@ public class HomeworkSix {
     public static void main (String[] args){
         //Task 1: Palindromes
         String[] testWords = {"RACECAR", "TACOCAT", "NORRALAK", "ANGIE", "TORSAK", "ANGTHONG", "KAYAK", "LEVEL"};
-        for (int i = 0; i < testWords.length; i++){ //Test every string in the array
+        for (String testWord : testWords) {
+            //Test every string in the array
             boolean isPalindrome = true; //It's a palindrome until proven it isn't!
             int forWords = 0; //From the first character of the String
-            int backWords = testWords[i].length() - 1; //From the last character of the String
-            while (forWords <= backWords){ //As long as the count going forward is less than or equal to the count going backwards (meaning we haven't passed the middle
-                if (testWords[i].toUpperCase().charAt(forWords) != testWords[i].toUpperCase().charAt(backWords)){ //If it does not equal then it's not a palindrome!
+            int backWords = testWord.length() - 1; //From the last character of the String
+            testWord = testWord.trim(); //Take out the spaces!
+            while (forWords <= backWords) {
+                //As long as the count going forward is less than or equal to the count going backwards (meaning we haven't passed the middle
+                if (testWord.toUpperCase().charAt(forWords) != testWord.toUpperCase().charAt(backWords)) {
+                    //If it does not equal then it's not a palindrome!
                     isPalindrome = false; //It is not a palindrome
                     break; //Break the loop
                 }
                 forWords++; //Check next character going forward
                 backWords--; //Compared to previous character going backwards
             }
-            if (isPalindrome){
-                System.out.println(testWords[i]+" IS A PALINDROME.");
-            }
-            else {
-                System.out.println(testWords[i]+" IS NOT A PALINDROME.");
+            if (isPalindrome) {
+                System.out.println(testWord + " IS A PALINDROME.");
+            } else {
+                System.out.println(testWord + " IS NOT A PALINDROME.");
             }
         }
         //Task 2: Primes
