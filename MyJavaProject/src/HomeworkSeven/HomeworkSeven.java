@@ -62,12 +62,28 @@ public class HomeworkSeven {
         }
         return isPalindrome;  //Return true or false value  
     }
+    //Alternate way! 
+    //This way is easier to type, but I think that the speed and efficacy of the first method is better
+    public static boolean palindrome(String testWord){
+        boolean isPalindrome = false; //Isn't a palindrome until proven it is!
+        if (reverseString(testWord).equalsIgnoreCase(testWord)){
+            isPalindrome = true;
+        }
+        if (isPalindrome) {
+            System.out.println(testWord + " IS A PALINDROME.");
+        } 
+        else {
+                System.out.println(testWord + " IS NOT A PALINDROME.");
+        }
+        return isPalindrome;  //Return true or false value  
+    }
+    
     //Task 4: Max Value
     public static int maxVal(int[] numbers){
-        int maxVal = 13; //Initializing the number. Usually you put it as 0 but 13 my fav
-        for(int i = 1; i < numbers.length; i++){ //Start at the second index to avoid any errors when comparing(If I start at 0, then what is numbers[0-1]?)
-            if (numbers[i]>= numbers[i-1]){
-                maxVal = numbers[i];
+        int maxVal = numbers[0]; //Assume first index is the largest
+        for(int i = 1; i < numbers.length; i++){ 
+            if (numbers[i]>= maxVal){ //If the number is greater than maxVal
+                maxVal = numbers[i]; //It becomes the new maxVal
             }
         }
         System.out.println("IN THE FOLLOWING ARRAY OF NUMBERS :"+Arrays.toString(numbers));
@@ -76,17 +92,23 @@ public class HomeworkSeven {
     }
     //Main function
     public static void main(String[] args){
+
         //Task 1
+        System.out.println("**T*A*S*K*****#1**");
         String mySentence = "mY nAmE iS NoRrAlAK aNd i NeeD mOnEy!";
         mySentence = caseFix(mySentence); //Reassigning the value. Now everytime you print mySentence, it will be formatted.
         System.out.println(mySentence);
+
         //Task 2
+        System.out.println("**T*A*S*K*****#2**");
         String[] wordTest = {"TORSAK", "ANGTHONG", "NORRALAK", "ANGIE", "UMBRA DEOS"};
         for (int i = 0; i < wordTest.length; i++){
             wordTest[i] = reverseString(wordTest[i]); //Reassigning the values
         } //Now everytime you print wordTest it will be reversed, since we reassigned on the line above.
         System.out.println(Arrays.toString(wordTest));
+
         //Task 3
+        System.out.println("**T*A*S*K*****#3**");
         String[] testWords = {"RACECAR", "TACOCAT", "NORRALAK", "ANGIE", "TORSAK", "ANGTHONG", "KAYAK", "LEVEL"};
         //Store boolean value in array equal to the array length of words we are testing
         boolean[] palResults = new boolean[testWords.length];
@@ -97,7 +119,18 @@ public class HomeworkSeven {
         //You can check which index is a palindrome or not
         System.out.println("PALINDROME ROLL CALL!");
         System.out.println(Arrays.toString(palResults).toUpperCase());
+
+        //Test the alternate method
+        System.out.println("*A*L*T*E*R*N*A*T*E*");
+        for (int i = 0; i < testWords.length; i++){
+            palResults[i] = false; //Initialize to be false first
+            palResults[i] = palindrome(testWords[i]); //Then set its value based on the return value of the function
+        }
+        //You can check which index is a palindrome or not
+        System.out.println("PALINDROME ROLL CALL!");
+        System.out.println(Arrays.toString(palResults).toUpperCase());
         //Task 4
+        System.out.println("**T*A*S*K*****#4**");
         int[] testNums = {13, 6, 23, 2, 0, 7, 12, 26, 8, 1};
         int bigNum = maxVal(testNums); //Return the value and store it in bigNum
         System.out.println(bigNum); //Let's see what value bigNum is
