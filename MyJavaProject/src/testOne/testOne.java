@@ -91,36 +91,25 @@ public class testOne {
         int missingSmol = 0; //Our return value
         int maxVal = HomeworkSeven.maxVal(arrNum); //Find the largest value
         int smolPos = smolPos(arrNum); //Smallest positive integer
-        int arrLength = maxVal - smolPos + 1; //Multi-purpose int to represent how large an array is
-        if (arrLength <= 0){ //This is only true if there are only negative numbers
-            missingSmol = 1;
+        if (maxVal - smolPos <= 0){ //This is only true if there are only negative numbers
+            missingSmol = 1; //If no positive numbers return one as per the requirements
         }
         else { //Otherwise we run the code
-            boolean[] found = new boolean[arrLength]; //Will track if items are found or not
-            int[] checkNum = new int[arrLength]; //Numbers from smallest positive to largest value.
-            for (int i = 0; i < arrLength; i++){
-                found[i] = false; //Initialize as not found
-                checkNum[i] = smolPos + i; //checkNum array starts at smolPos, goes up by one each index and ends at maxVal
-            }
-            //Check the array if the number is found or not
-            for (int i = 0; i < arrNum.length; i++){
-                if (arrNum[i] >= 0){ //Only if the number is positive, the code will check
-                    for (int j = 0; j < arrLength; j++){ //Whether or not it is equal to any numbers in checkNum
-                        if (arrNum[i] == checkNum[j]){ //If it is equal to any element in checkNum
-                            found[j] = true; //Ladies and gentlemen, we got him (set the corresponding index in the boolean array to true)
-                        }
+            for (int i = smolPos; i <= maxVal; i++){ //Check if it is equal to all the numbers from smolPos to maxVal
+                boolean found = false; //Assume the number is missing
+                for (int j = 0; j < arrNum.length; j++){ //Go through arrNum
+                    if (arrNum[j] == i){ //If this element is equal any number smolPos - maxVal inclusive
+                        found = true; //We did find the number, so this is not the missing number
+                        break; //Stop checking and go to the next index of arrNum
                     }
-                }
-            }
-            //Now we look for the smallest number not found
-            for (int i = 0; i < arrLength; i++){ //Since checkNum is in order
-                if (!found[i]){ //The very first int in checkNum that wasn't found
-                    missingSmol = checkNum[i]; //Will be our missing number
-                    break; //We can stop checking
+                } //If we end up going through all of arrNum  
+                if (!found){ //And found is still false 
+                    missingSmol = i; //Ladies and gentlemen, we got him (this is the smallest missing number from smolPos to maxVal)
+                    break; //Stop checking 
                 }
             }
         }
-        
+        //Oof that was kinda tough
         return missingSmol;
     }
     
