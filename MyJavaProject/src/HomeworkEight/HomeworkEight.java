@@ -69,5 +69,6 @@ public class HomeworkEight {
         System.out.println(Arrays.toString(findWord(testArr, search)));
         //Task 2
         System.out.println(Arrays.toString(maxString(testArr)));
+
     }
 }
