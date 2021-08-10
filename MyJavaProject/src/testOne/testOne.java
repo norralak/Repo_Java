@@ -157,5 +157,8 @@ public class testOne {
         int[] fourthTest = {3, 5, 1, 4, 2, 7};
         System.out.println("SMALLEST MISSING POSITIVE INTEGER: "+missingSmol(fourthTest)); //My max val will print the full array
         System.out.println("******------*------******"); //Separate test cases
+        int[] myTest = {3, 5, 13, 4, 6, 7}; //Should return 8
+        System.out.println("SMALLEST MISSING POSITIVE INTEGER: "+missingSmol(myTest)); //My max val will print the full array
+        System.out.println("******------*------******"); //Separate test cases
     }
 }
