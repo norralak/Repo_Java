@@ -58,13 +58,18 @@ public class testOne {
             }
         } //Now we know how big to make our return array
         int[] purgedArr = new int[num.length - count];
-        int j = 0; //Represents indexes of our return array
-        for (int i = 0; i < num.length && j < num.length - count; i++){ //For the length of num or purgedArr
-            if (search != num[i]){ //If it is the number
-                purgedArr[j] = num[i]; //Copy it to the purged array
-                j++; //Iterate purged array to next index
+        if (count == 0){ //If we can't find the number then return the original one
+            purgedArr = num;
+        }
+        else { //But if there is....
+            int j = 0; //Represents indexes of our return array
+            for (int i = 0; i < num.length && j < num.length - count; i++){ //For the length of num or purgedArr
+                if (search != num[i]){ //If it is the number
+                    purgedArr[j] = num[i]; //Copy it to the purged array
+                    j++; //Iterate purged array to next index
+                }
+                    //Otherwise do not iterate
             }
-                //Otherwise do not iterate
         }
         
         return purgedArr;
