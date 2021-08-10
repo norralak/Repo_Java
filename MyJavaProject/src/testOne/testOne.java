@@ -6,6 +6,7 @@
 package testOne;
 
 import java.util.Arrays;
+import HomeworkSeven.HomeworkSeven; //We will use maxVal
 
 /**
  *
@@ -70,7 +71,60 @@ public class testOne {
         
     }
     
-   
+    //Task 3
+    
+    //First we make a method to find the smallest positive integer
+    public static int smolPos (int [] num){
+        int smolPos = num[0]; //Assume first one is the smallest
+        for (int n : num){ //For each array element
+            if (smolPos >= n && n >= 0){ //If the element is positive and smaller than smolPos
+                smolPos = n; //It shall become the new smolPos
+            }
+        }
+        if (smolPos < 0){ //Default if there are only negatives
+            smolPos = 0; 
+        }
+        return smolPos;
+    }
+    
+    public static int missingSmol (int[] arrNum){
+        int missingSmol = 0; //Our return value
+        int maxVal = HomeworkSeven.maxVal(arrNum); //Find the largest value
+        int smolPos = smolPos(arrNum); //Smallest positive integer
+        int arrLength = maxVal - smolPos + 1; //Multi-purpose int to represent how large an array is
+        if (arrLength <= 0){ //This is only true if there are only negative numbers
+            missingSmol = 1;
+        }
+        else { //Otherwise we run the code
+            boolean[] found = new boolean[arrLength]; //Will track if items are found or not
+            int[] checkNum = new int[arrLength]; //Numbers from smallest positive to largest value.
+            for (int i = 0; i < arrLength; i++){
+                found[i] = false; //Initialize as not found
+                checkNum[i] = smolPos + i; //checkNum array starts at smolPos, goes up by one each index and ends at maxVal
+            }
+            //Check the array if the number is found or not
+            for (int i = 0; i < arrNum.length; i++){
+                if (arrNum[i] >= 0){ //Only if the number is positive, the code will check
+                    for (int j = 0; j < arrLength; j++){ //Whether or not it is equal to any numbers in checkNum
+                        if (arrNum[i] == checkNum[j]){ //If it is equal to any element in checkNum
+                            found[j] = true; //Ladies and gentlemen, we got him (set the corresponding index in the boolean array to true)
+                        }
+                    }
+                }
+            }
+            //Now we look for the smallest number not found
+            for (int i = 0; i < arrLength; i++){ //Since checkNum is in order
+                if (!found[i]){ //The very first int in checkNum that wasn't found
+                    missingSmol = checkNum[i]; //Will be our missing number
+                    break; //We can stop checking
+                }
+            }
+        }
+        
+        return missingSmol;
+    }
+    
+    
     public static void main (String[] args){
         //Task 1
         int[] speed = {-13, 52, 74, 75, 129, 130, 143}; //Invalid, under, slightly over but no points, one point, multiple points, suspension, over suspension
@@ -86,6 +140,22 @@ public class testOne {
             System.out.println("******------*------******"); //Separate test cases
         }
         //Test for none changed
+        System.out.println("CHANGE NOTHING");
         System.out.println(Arrays.toString(findNum(130, testNums)));
+        System.out.println("******------*------******"); //Separate test cases
+        
+        //Task 3
+        int[] firstTest = {-2, -5, -1, -10, -6};
+        System.out.println("SMALLEST MISSING POSITIVE INTEGER: "+missingSmol(firstTest)); //My max val will print the full array
+        System.out.println("******------*------******"); //Separate test cases
+        int[] secondTest = {0, 5, -1, 1, 2, 5, 3, 7, 1, 2};
+        System.out.println("SMALLEST MISSING POSITIVE INTEGER: "+missingSmol(secondTest)); //My max val will print the full array
+        System.out.println("******------*------******"); //Separate test cases
+        int[] thirdTest = {2, 5, -1, 0, 6};
+        System.out.println("SMALLEST MISSING POSITIVE INTEGER: "+missingSmol(thirdTest)); //My max val will print the full array
+        System.out.println("******------*------******"); //Separate test cases
+        int[] fourthTest = {3, 5, 1, 4, 2, 7};
+        System.out.println("SMALLEST MISSING POSITIVE INTEGER: "+missingSmol(fourthTest)); //My max val will print the full array
+        System.out.println("******------*------******"); //Separate test cases
     }
 }
