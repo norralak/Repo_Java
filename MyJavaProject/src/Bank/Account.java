@@ -47,47 +47,47 @@ public class Account {
         this.showBalance();
     }
     
-    protected Account openAccount(){
+    protected Account openAccount(Account acc){
         Scanner input = new Scanner(System.in);
-        System.out.println("WHAT TYPE OF ACCOUNT WOULD YOU LIKE TO OPEN? /n"
-                + "1. CHECKINGS /n"
-                + "2. SAVINGS /n"
-                + "3. CREDIT CARD /n"
+        System.out.println("WHAT TYPE OF ACCOUNT WOULD YOU LIKE TO OPEN? \n"
+                + "1. CHECKINGS \n"
+                + "2. SAVINGS \n"
+                + "3. CREDIT CARD \n"
                 + "PRESS 1,2 OR 3 THEN PRESS ENTER: ");
         int choice = input.nextInt();
         input.nextLine();
         switch (choice){
             case 1:
-                accountType = "CHECKINGS";
-                accountIden = Bank.nCrypted++;
+                acc.accountType = "CHECKINGS";
+                acc.accountIden = Bank.nCrypted++;
                 System.out.println("ENTER INITIAL DEPOSIT AMOUNT: ");
-                balance = input.nextDouble();
+                acc.balance = input.nextDouble();
                 break;
             
             case 2:
-                accountType = "SAVINGS";
-                accountIden = Bank.nCrypted++;
+                acc.accountType = "SAVINGS";
+                acc.accountIden = Bank.nCrypted++;
                 System.out.println("ENTER INITIAL DEPOSIT AMOUNT: ");
-                balance = input.nextDouble();
+                acc.balance = input.nextDouble();
                 break;
             
             case 3:
-                accountType = "CREDIT CARD";
-                accountIden = Bank.nCrypted++;
-                balance = 0.0;
+                acc.accountType = "CREDIT CARD";
+                acc.accountIden = Bank.nCrypted++;
+                acc.balance = 0.0;
                 System.out.println("PLEASE ENTER YOUR CREDIT SCORE: ");
                 int cScore = input.nextInt();
-                if (cScore >= 750 || cScore <= 850){
-                    creditLine = 5000.0;
+                if (cScore >= 750 && cScore <= 850){
+                    acc.creditLine = 5000.0;
                 }
                 else if (cScore >= 649){
-                    creditLine = 2500.0;
+                    acc.creditLine = 2500.0;
                 }
                 else if (cScore >= 549){
-                    creditLine = 1000.0;
+                    acc.creditLine = 1000.0;
                 } 
-                else if (cScore >= 300 || cScore <= 500){
-                    creditLine = 300.0;
+                else if (cScore >= 300 && cScore <= 500){
+                    acc.creditLine = 300.0;
                 }
                 else{
                     System.out.println("YOUR CREDIT SCORE IS INVALID OR YOU DO NOT QUALIFY FOR A CREDIT CARD WITH US. EXITING PROCESS.");
@@ -99,21 +99,24 @@ public class Account {
                 break;
                 
         }
-        this.showBalance();
-        return this;
+        acc.showBalance();
+        return acc;
         
     }
     
     protected void showBalance(){
         if (accountIden == 13){
             System.out.println(accountType);
+            System.out.println("             *-*-*-*-*-*-*             ");
         }
         else {
             System.out.println("ACCOUNT NUMBER: "+accountIden);
             if (accountType.equals("CREDIT CARD")){
                 System.out.println("CREDIT LINE: $"+creditLine);
             }
+            System.out.println(accountType);
             System.out.println("BALANCE: $"+balance);
+            System.out.println("             *-*-*-*-*-*-*             ");            
         }
     }
     
@@ -143,5 +146,9 @@ public class Account {
         this.showBalance();
         System.out.println("THANK YOU.");
     }
-
+    
+    protected int getId(){
+        return accountIden;
+    }
+    
 }

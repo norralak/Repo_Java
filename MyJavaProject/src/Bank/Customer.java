@@ -14,10 +14,10 @@ public class Customer extends Account{
     private String pass;
     private final String name; 
     private final String socSec; 
-    private String phNum; 
-    private String city;
-    private int numOfAcc;
-    private final Account[] acc = new Account[5];
+    protected String phNum; 
+    protected String city;
+    protected int numOfAcc;
+    protected final Account[] acc = new Account[5];
 
     public Customer(String user, String pass, String name, String socSec, String phNum) {
         this.user = user;
@@ -38,11 +38,11 @@ public class Customer extends Account{
     public Customer(String user, String pass, String name, String socSec, String phNum, String city) {
         this.user = user;
         this.pass = pass;
-        this.name = name;
+        this.name = name.toUpperCase();
         this.socSec = socSec;
         this.phNum = phNum;
         this.numOfAcc = 0;
-        this.city = city;
+        this.city = city.toUpperCase();
         this.acc[0] = new Account();
         this.acc[1] = new Account();
         this.acc[2] = new Account();
@@ -62,7 +62,7 @@ public class Customer extends Account{
         String userName = input.nextLine();
         while (uExists){
             uExists = false;
-            for (int i = 0; i <= Bank.cusCount; i++){
+            for (int i = 0; i < Bank.cusCount; i++){
                 if (Bank.database[i].getUser().equals(userName)){
                     uExists = true;
                     System.out.println("USERNAME EXISTS, PLEASE ENTER A NEW USERNAME: ");
@@ -83,16 +83,23 @@ public class Customer extends Account{
         city = input.nextLine();
         numOfAcc = 0;
         System.out.println("THANK YOU "+name+". YOUR PROFILE HAS BEEN CREATED.");
+        Bank.database[Bank.cusCount] = this;
+        Bank.cusCount++;
+        this.acc[0] = new Account();
+        this.acc[1] = new Account();
+        this.acc[2] = new Account();
+        this.acc[3] = new Account();
+        this.acc[4] = new Account();
     }
     
-    private void updateProfile(String fieldName, String newVal){
+    protected void updateProfile(String fieldName, String newVal){
         switch (fieldName.toUpperCase()){
             case "PASSWORD":
                 pass = newVal;
                 break;
                 
             case "CITY":
-                city = newVal;
+                city = newVal.toUpperCase();
                 break;
             
             case "PHONE NUMBER":
@@ -104,24 +111,32 @@ public class Customer extends Account{
         }
     }
     
-    private void showProfile(){
-        System.out.println("NAME: "+name.toUpperCase());
-        System.out.println("PHONE NUMBER: "+phNum.toUpperCase());
-        System.out.println("CITY: "+city.toUpperCase());
+    protected void showProfile(){
+        System.out.println("NAME: "+name);
+        System.out.println("PHONE NUMBER: "+phNum);
+        System.out.println("CITY: "+city);
         System.out.println("ACCOUNTS OPENED: "+numOfAcc);
     }
     
     protected Account openAccount(){
-        acc[numOfAcc] = super.openAccount();
-        numOfAcc++;
-        return acc[numOfAcc - 1];
+        if (numOfAcc < 5){
+            super.openAccount(acc[numOfAcc]);
+            numOfAcc++;
+            return acc[numOfAcc - 1];
+        }
+        else {
+            System.out.println("YOU ALREADY HAVE 5 ACCOUNTS");
+            this.showProfile();
+            return acc[numOfAcc - 1];
+        }
     }
     
-    private void getBankBalance(int accIndex){
+    protected void getBankBalance(int accIndex){
         this.acc[accIndex].showBalance();
     }
     
-    private void getBankBalance(){
+    protected void getBankBalance(){
+
         for (Account account : this.acc){
             account.showBalance();
         }
@@ -134,4 +149,9 @@ public class Customer extends Account{
     public String getPass(){
         return pass;
     }
+    
+    public String getName(){
+        return name;
+    }
+    
 }
