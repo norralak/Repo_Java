@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Bank;
-import java.util.Scanner;
+import java.util.*;
 /**
  *
  * @author Norralak
@@ -85,8 +85,7 @@ public class Bank {
                                     if (database[i].acc[j].getId() == num){
                                         found = true;
                                         database[i].acc[j].showBalance();
-                                        System.out.println("ENTER HOW MUCH WOULD YOU LIKE TO DEPOSIT3"
-                                                + "/PAY: ");
+                                        System.out.println("ENTER HOW MUCH WOULD YOU LIKE TO DEPOSIT/PAY: ");
                                         double moneyIn = input.nextDouble();
                                         input.nextLine();
                                         database[i].acc[j].makeDeposit(moneyIn);
