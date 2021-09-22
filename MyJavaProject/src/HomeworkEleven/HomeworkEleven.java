@@ -1,5 +1,7 @@
 package HomeworkEleven;
 
+import java.sql.Array;
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class HomeworkEleven {
@@ -39,6 +41,51 @@ public class HomeworkEleven {
         }
         return maxCount; //Return our List
     }
+    //Task Three Part One
+    public static HashMap<Integer, String> userKeyVal (){ //Just so user can enter a custom HashMap into the console
+        Scanner read = new Scanner(System.in);
+        HashMap<Integer, String> userKeyVal = new HashMap<>();
+        String loop = "13";
+        while (!loop.equalsIgnoreCase("0")){
+            System.out.println("PLEASE ENTER AN INTEGER: ");
+            int key = read.nextInt();
+            System.out.println("PLEASE ENTER A STRING: ");
+            read.nextLine(); //Line buffer
+            String val = read.nextLine();
+            userKeyVal.put(key, val);
+            System.out.println("YOUR HASHMAP: "+userKeyVal);
+            System.out.println("TO EXIT PRESS 0, TO CONTINUE ADDING PRESS ANY OTHER KEY: ");
+            loop = read.nextLine();
+        }
+        return userKeyVal;
+    }
+    //Task Three Part Two (MAIN)
+    public static HashMap<String, String> commonVal (HashMap<Integer, String> userMap){
+        HashMap<String, String> commonVal = new HashMap<String, String>(); //Our return Map to store duplicates only
+        HashSet<String> hasClone = new HashSet<String>(); //Store all unique values
+        for (int key : userMap.keySet()){ //For each key in userMap
+            if (!hasClone.contains(userMap.get(key).toUpperCase())){ //If hasClone does not contain its key
+                hasClone.add(userMap.get(key).toUpperCase()); //Add it to the Set
+            }
+            else { //If the Set contains the key already
+                commonVal.put(userMap.get(key).toUpperCase(), "=>PRESENT IN KEYS: "); //Put it into our return Map
+            }
+        }
+        if (!commonVal.isEmpty()){ //If there are common values
+            for (String key : commonVal.keySet()){ //Compare all of commonVal keys to userMap values
+                for (int val : userMap.keySet()){
+                    if (key.equalsIgnoreCase(userMap.get(val))){ //If they are the same
+                        commonVal.put(key, commonVal.get(key)+" "+val); //Concatenate the key of userMap to the existing value of commonVal
+                    }
+                }
+            }
+        }
+        else { //Otherwise put the Strings below as the return Map's key and value
+            commonVal.put("<= ALL KEYS HAVE DIFFERENT VALUES ",">");
+        }
+        return commonVal; //Return our Map of duplicate values
+    }
+    //Main function
     public static void main(String[] args) {
         //Task One
         ArrayList<String> norralak = new ArrayList<String>(Arrays.asList("Norralak", "Angie", "Angthong", "Torsak", "Mew", "Pop", "Norralak", "Torsak", "Angthong", "Norralak"));
@@ -55,5 +102,23 @@ public class HomeworkEleven {
                 "green", "blue", "yellow", "grey", "green", "blue", "green", "green",
                 "green", "green", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange",};
         System.out.println(maxCount(colorArr)); //Expected Green: 9 Orange: 9
+        //Task Three
+        HashMap<Integer, String> comValTest = new HashMap<>();
+        comValTest.put(7, "NORRALAK");
+        comValTest.put(13, "ANGIE");
+        comValTest.put(1, "NORRALAK");
+        comValTest.put(2, "ANGIE");
+        comValTest.put(3, "ANGTHONG");
+        comValTest.put(4, "TORSAK");
+        comValTest.put(6, "MEW");
+        comValTest.put(5, "POP");
+        comValTest.put(8, "MEW");
+        comValTest.put(9, "ANGIE");
+        comValTest.put(10, "nOrRaLaK");
+        comValTest.put(11, "pOp");
+        System.out.println(commonVal(comValTest));
+        comValTest.clear();
+        comValTest = userKeyVal(); //User input key-value pairs
+        System.out.println(commonVal(comValTest));
     }
 }
